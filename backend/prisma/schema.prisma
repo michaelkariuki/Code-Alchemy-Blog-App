@@ -11,11 +11,92 @@ datasource db {
 }
 
 model User {
-  userId    Int      @id @default(autoincrement())
-  username  String   @unique
-  email     String   @unique
-  firstName String
-  lastName  String
-  password  String
-  userImage String?  // Optional field for the user image URL
+  user_id      Int       @id @default(autoincrement())
+  username     String
+  first_name   String
+  last_name    String
+  email        String
+  password     String
+  role         String
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @updatedAt
+  Profile      Profile?  @relation("UserProfile")
+  Blog         Blog[]    @relation("BlogToUser")
+  Comment      Comment[] @relation("CommentToUser")
+  CommentLikes CommentLikes[]
+}
+
+model Profile {
+  profile_id Int      @id @default(autoincrement())
+  picture    String?
+  bio        String?
+  location   String?
+  interests  String?
+  user_id    Int      @unique
+  User       User     @relation("UserProfile", fields: [user_id], references: [user_id])
+}
+
+model Category {
+  category_id Int       @id @default(autoincrement())
+  name        String
+  created_at  DateTime
+  updated_at  DateTime
+  blogs       Blog[]    @relation("CategoryToBlog") // Define the one-to-many relationship with Blog
+}
+
+model Blog {
+  blog_id         Int        @id @default(autoincrement())
+  title           String
+  body            String
+  author_id       Int
+  category_id     Int?       // Foreign key referencing the Category model's category_id
+  publication_date DateTime
+  status          String
+  views           Int
+  created_at      DateTime  @default(now())
+  updated_at      DateTime  @updatedAt
+  User            User      @relation("BlogToUser", fields: [author_id], references: [user_id])
+  Category        Category? @relation("CategoryToBlog", fields: [category_id], references: [category_id])
+  BlogTags        BlogTag[]
+  Comment         Comment[]
+}
+
+model Tag {
+  tag_id      Int       @id @default(autoincrement())
+  name        String
+  created_at  DateTime
+  updated_at  DateTime
+  BlogTags    BlogTag[]
+}
+
+model BlogTag {
+  blog_id     Int
+  tag_id      Int
+  @@id([blog_id, tag_id])
+  Blog        Blog     @relation(fields: [blog_id], references: [blog_id])
+  Tag         Tag      @relation(fields: [tag_id], references: [tag_id])
+}
+
+model Comment {
+  comment_id      Int       @id @default(autoincrement())
+  content         String
+  author_id       Int
+  blog_id         Int
+  parent_comment_id Int?
+  created_at      DateTime  @default(now())
+  updated_at      DateTime  @updatedAt
+  User            User      @relation("CommentToUser", fields: [author_id], references: [user_id])
+  Blog            Blog      @relation(fields: [blog_id], references: [blog_id])
+  ParentComment   Comment?  @relation("CommentToParentComment", fields: [parent_comment_id], references: [comment_id])
+  ChildComments   Comment[] @relation("CommentToParentComment")
+  CommentLikes    CommentLikes[]
+}
+
+model CommentLikes {
+  like_id     Int       @id @default(autoincrement())
+  comment_id  Int
+  user_id     Int
+  created_at  DateTime  @default(now())
+  Comment     Comment   @relation(fields: [comment_id], references: [comment_id])
+  User        User      @relation(fields: [user_id], references: [user_id])
 }
