@@ -12,12 +12,12 @@ datasource db {
 
 model User {
   user_id      Int       @id @default(autoincrement())
-  username     String
+  username     String    @unique // Set username field as unique
   first_name   String
   last_name    String
   email        String
   password     String
-  role         String
+  role         String    @default("USER")
   created_at   DateTime  @default(now())
   updated_at   DateTime  @updatedAt
   Profile      Profile?  @relation("UserProfile")
