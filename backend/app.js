@@ -6,6 +6,8 @@ var cors = require('cors')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var authenticationRouter = require('./routes/authentication');
+
 
 var app = express();
 
@@ -20,6 +22,9 @@ app.use(logger('dev'));
 
 // ROUTES *********************************************
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/profile', usersRouter);
+app.use('/signup', authenticationRouter)
+app.use('/login', authenticationRouter)
+
 
 module.exports = app;
