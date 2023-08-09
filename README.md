@@ -1,8 +1,8 @@
 # Code-Alchemy-Blog-App
-A blog app project for writing about Finance, Software development and the occult. 
-The project is made using the PERN stack (Postgres, Express, React, Node)
+- A blog app project for writing about Finance, Software development and the occult. 
+- The project is made using the PERN stack (Postgres, Express, React, Node)
 <br/>
-<br/>
+
 ## Code Alchemy ERD
 Here's a simple Entity-Relationship Diagram (ERD) based on a similar DBML (Database Markup Language) : 
 <br/>
