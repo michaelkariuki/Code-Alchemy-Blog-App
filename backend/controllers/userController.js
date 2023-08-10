@@ -140,5 +140,15 @@ exports.signup = async (req, res) => {
   }
 };
 
+exports.logout = async (req, res) => {
+  req.session.destroy((err) => {
+    console.error("Error destroying session:", err);
+    return res.status(500).json({
+      error: "An error occurred while logging out",
+    });
+  });
+
+  res.json({ message: "Logged out successfully" });
+};
 
 
