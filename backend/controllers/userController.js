@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 const bcrypt = require('bcrypt');
+const userModel = require('../models/PrismaUserModels')
 
 const prisma = new PrismaClient();
 const saltRounds = 10
@@ -17,33 +18,9 @@ exports.login = async (req, res) => {
 
     // Check if user used email or password for authentication (both unique)
     if (username) {
-      user = await prisma.user.findUnique({
-        where: {
-          username,
-        },
-        include: {
-          Profile: {
-            select: {
-              profile_id: true,
-              picture: true,
-            },
-          },
-        },
-      });
+      user = await userModel.getLoginData(username)
     } else {
-      user = await prisma.user.findUnique({
-        where: {
-          email,
-        },
-        include: {
-          Profile: {
-            select: {
-              profile_id: true,
-              picture: true,
-            },
-          },
-        },
-      });
+      user = await userModel.getLoginData(email)
     }
 
     // If the user doesn't exist, return an error
@@ -96,36 +73,30 @@ exports.signup = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     // Create a new user in the User model
-    const user = await prisma.user.create({
-      data: {
-        username,
-        first_name,
-        last_name,
-        email,
-        hashedPassword,
-      },
+    const user = await userModel.createUser({
+      username,
+      first_name,
+      last_name,
+      email,
+      hashedPassword,
     });
 
     // Check if optional profile data is provided
-    if (req.body.profileData) {
+    if (user && req.body.profileData) {
       const { picture, bio, location, interests } = req.body.profileData;
 
       // Create a new profile in the Profile model and associate it with the user
-      await prisma.profile.create({
-        data: {
-          picture,
-          bio,
-          location,
-          interests,
-          user_id: user.user_id,
-        },
+      await userModel.createProfile({
+        picture,
+        bio,
+        location,
+        interests,
+        user_id: user.user_id,
       });
     } else {
       // If no profile data is provided, create an empty profile for the user
-      await prisma.profile.create({
-        data: {
-          user_id: user.user_id,
-        },
+      await userModel.createProfile({
+        user_id: user.user_id,
       });
     }
 
