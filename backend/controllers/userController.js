@@ -1,8 +1,6 @@
-import { PrismaClient } from '@prisma/client'
 const bcrypt = require('bcrypt');
 const userModel = require('../models/PrismaUserModels')
-
-const prisma = new PrismaClient();
+const utils = require('./controllerUtils')
 const saltRounds = 10
 
 exports.login = async (req, res) => {
@@ -14,13 +12,18 @@ exports.login = async (req, res) => {
 
   try {
     const { username, password, email } = req.body;
-    let user = undefined;
+    let user = req.body; //Info here should be parsed {check whether actually email or username (regex)}
 
     // Check if user used email or password for authentication (both unique)
     if (username) {
-      user = await userModel.getLoginData(username)
-    } else {
-      user = await userModel.getLoginData(email)
+      user = await userModel.getLoginData("username", username)
+      
+    } else if (email) {
+      user = await userModel.getLoginData("email", email)
+    } else{
+      return res.status(401).json({
+        error: "No username or email",
+      });
     }
 
     // If the user doesn't exist, return an error
@@ -31,15 +34,21 @@ exports.login = async (req, res) => {
     }
 
     // Compare the provided password with the hashed password stored in the database
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (password) {
+      const passwordMatch = await bcrypt.compare(password, user.password);
 
-    // If the passwords don't match, return an error
-    if (!passwordMatch) {
+      // If the passwords don't match, return an error
+      if (!passwordMatch) {
+        return res.status(401).json({
+          error: "Invalid Credentials",
+        });
+      }
+    } else {
       return res.status(401).json({
-        error: "Invalid Credentials",
+        error: "No password",
       });
     }
-
+   
     // Passwords match, user is authenticated
     const userSessionData = {
       user_id: user.username,
@@ -55,71 +64,109 @@ exports.login = async (req, res) => {
     req.session.sessionData = userSessionData;
 
     res.json({
-      message: "Login successfull",
-      user: user.username,
+      success: "Login successfull",
+      // user: user.username,
+      session: req.session
     });
   } catch (error) {
-    Console.error("Error logging in", error);
-    res.status(500).json({
+    console.error("Error logging in", error);
+    return res.status(500).json({
       error: "An error occurred logging you in",
     });
   }
 };
 
 exports.signup = async (req, res) => {
+  // let filterKeys = ['username', 'first_name', 'last_name', 'email', 'password']
   try {
-    const { username, first_name, last_name, email, password } = req.body;
-
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-    // Create a new user in the User model
-    const user = await userModel.createUser({
-      username,
-      first_name,
-      last_name,
-      email,
-      hashedPassword,
-    });
-
+    let userData = utils.castObject(req.body)
     // Check if optional profile data is provided
-    if (user && req.body.profileData) {
-      const { picture, bio, location, interests } = req.body.profileData;
+    let profileData = req.body.profileData
+      ? castObject(req.body.profileData)
+      : {};
 
-      // Create a new profile in the Profile model and associate it with the user
-      await userModel.createProfile({
-        picture,
-        bio,
-        location,
-        interests,
-        user_id: user.user_id,
-      });
+    delete userData.profileData;
+
+    // Create hash for user's password
+    if (userData.password){
+      const hashedPassword = await bcrypt.hash(userData.password, saltRounds);
+      userData.password = hashedPassword
     } else {
-      // If no profile data is provided, create an empty profile for the user
-      await userModel.createProfile({
-        user_id: user.user_id,
+      return res.status(400).json({
+        message: "User data missing : password",
+        // userData: userData
+      })
+    }
+    
+    // if (!utils.isObjEmpty(profileData)){
+    //   delete userData.profileData
+    // } 
+
+    console.log("data : " ,userData)
+    let user = undefined
+    let profile = undefined
+
+    // Check if user exists
+    if (userData.username && userData.email) {
+      const checkUser = await userModel.getUser([
+        {username: userData.username},
+        {email: userData.email}
+      ]);
+
+      if (checkUser){
+        return res.status(200).json({
+          message: "User already exists",
+          // user: checkUser.username
+        })
+      }else{
+        // Create a new user
+        // Create a new profile in the Profile model and associate it with the user
+        user = await userModel.createUser(userData);
+        profileData.user_id = user.user_id 
+        profile = await userModel.createProfile(profileData);
+      }
+    } else{
+      return res.status(400).json({
+        message: `Insufficient data to create user`,
+        // userData: userData
       });
     }
-
-    res.status(201).json({
-      message: "User registered successfully",
+    
+    return res.status(201).json({
+      success: "User registered successfully",
+      user : user,
+      // userProfile : profile
     });
   } catch (error) {
     console.error("Error during registration", error);
-    res.status(500).json({
+    return res.status(500).json({
       error: "An error occurred during registration",
     });
   }
 };
 
 exports.logout = async (req, res) => {
-  req.session.destroy((err) => {
-    console.error("Error destroying session:", err);
-    return res.status(500).json({
-      error: "An error occurred while logging out",
+  // console.log(req)
+  // console.log(req.session)
+  if (req.session.sessionData){
+    req.session.destroy((err) => {
+      if (err) {
+        console.error("Error destroying session:", err);
+        return res.status(500).json({
+          error: "An error occurred while logging out",
+        });
+      }
+      return res.json({ message: "Logged out successfully" });
     });
-  });
-
-  res.json({ message: "Logged out successfully" });
+    
+  }else{
+    return res.status(404).json({
+      error: "No session data found",
+    });
+  }
+  
 };
+
+
 
 

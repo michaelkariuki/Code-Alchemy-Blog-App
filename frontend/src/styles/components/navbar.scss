@@ -1,0 +1,40 @@
+@use '../variables.scss' as var;
+
+@mixin special-link {
+    color: map-get(var.$general , ghost );
+    background-color: map-get(var.$text, raspberry );
+
+    &:hover{
+        color: map-get(var.$general ,  ghost);
+        background-color: map-get(var.$general, purple );
+    }
+}
+
+.nav-links {
+    font-size: map-get(var.$font-sizes, base);
+    font-weight: 500;
+
+    .special-nav {
+        @include special-link;
+    }
+}
+
+.nav-links .nav-link:not(:last-child){
+    margin-right: 1.25rem;
+}
+
+.search-nav{
+    border: 1px solid map-get(var.$text, silver );
+
+    &:focus{
+        outline: 1px solid map-get(var.$general, charcoal_gray );
+    }
+}
+
+.account-btn{
+    width: 50px;
+}
+
+
+
+

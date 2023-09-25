@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+.nav-links {
+  font-size: 16px;
+  font-weight: 500;
+}
+.nav-links .special-nav {
+  color: #F9F9FB;
+  background-color: #FF5480;
+}
+.nav-links .special-nav:hover {
+  color: #F9F9FB;
+  background-color: #9283E0;
+}
+
+.nav-links .nav-link:not(:last-child) {
+  margin-right: 1.25rem;
+}
+
+.search-nav {
+  border: 1px solid #9FA4AF;
+}
+.search-nav:focus {
+  outline: 1px solid #282C35;
+}
+
+.account-btn {
+  width: 50px;
+}
+
+/*# sourceMappingURL=navbar.css.map */

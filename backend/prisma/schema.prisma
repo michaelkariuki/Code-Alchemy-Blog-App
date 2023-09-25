@@ -100,3 +100,10 @@ model CommentLikes {
   Comment     Comment   @relation(fields: [comment_id], references: [comment_id])
   User        User      @relation(fields: [user_id], references: [user_id])
 }
+
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt   DateTime
+}

@@ -1,0 +1,22 @@
+/* The following line can be included in a src/App.scss */
+@import './variables.scss';
+@import '~bootstrap/scss/bootstrap';
+
+
+* {
+    font-family: map-get($fonts, test);;
+}
+
+@mixin search-component-styles(){
+    display: flex;
+    align-items: center;
+}
+
+.search-component {
+    @include search-component-styles();
+}
+
+
+
+
+

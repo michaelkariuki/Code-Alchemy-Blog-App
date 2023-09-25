@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 module.exports = {
@@ -12,15 +12,17 @@ module.exports = {
   },
   createProfile: async (profileData) => {
     // Create a new Profile for the user model User model
-    await prisma.user.create({
+    const profile = await prisma.profile.create({
       data: profileData,
     });
+
+    return profile;
   },
-  getLoginData: async (uniqueField) => {
+  getLoginData: async (key, data) => {
     // Create a new user in the User model
     const user = await prisma.user.findUnique({
       where: {
-        uniqueField,
+        [key]: data,
       },
       include: {
         Profile: {
@@ -32,6 +34,20 @@ module.exports = {
       },
     });
 
+    return user;
+  },
+  getUser: async (data) => {
+    const user = await prisma.user.findFirst({
+      where: {
+        AND: [
+          ...data
+        ]
+      },
+      select: {
+        username: true,
+        email: true,
+      },
+    });
     return user;
   },
 };

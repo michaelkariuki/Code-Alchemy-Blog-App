@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@300&display=swap');
+
+
+$font-sizes: (
+  base: 16px,
+  h2: 36px,
+  h3: 28px,
+  h4: 18px,
+  h5: 16px,
+  blockquote: 24px,
+  title1: 2.25em,
+  title2: 1.5em,
+  title3: 1.125em
+);
+
+$fonts: (
+    primary: 'Open Sans'
+);
+
+$general: (
+  yellow: #FFD581,
+  coral: #FFA599,
+  pink: #FF8FAC,
+  lavender: #FE90EC,
+  ghost: #F9F9FB,
+  green: #00DC90,
+  purple: #9283E0,
+  blue: #27AEFF,
+  charcoal_gray: #282C35
+);
+
+$text: (
+  raspberry: #FF5480,
+  silver: #9FA4AF,
+  lavender: #9283E0,
+  black: #000000
+);
+
+
