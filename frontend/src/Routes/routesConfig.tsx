@@ -39,7 +39,7 @@ const generateRoutes = (routes: RouteConfig[]) => {
       element={route.element}
     >
       {route.children && route.children.length > 0 && (
-        <Route>{generateRoutes(route.children)}</Route>
+        generateRoutes(route.children)
       )}
     </Route>
   ))

@@ -10,9 +10,14 @@
     }
 }
 
+
 .nav-links {
     font-size: map-get(var.$font-sizes, base);
     font-weight: 500;
+
+    // .nav-special{
+    //     padding:
+    // }
 
     .special-nav {
         @include special-link;
@@ -32,8 +37,15 @@
 }
 
 .account-btn{
-    width: 50px;
+    // width: 50px;
+    // margin: 0 1.5em;
+
+    .profile-icon{
+        width: 30px;
+        height: 30px;
+    }
 }
+
 
 
 

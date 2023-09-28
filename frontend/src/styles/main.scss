@@ -1,7 +1,16 @@
 /* The following line can be included in a src/App.scss */
-@import './variables.scss';
 @import '~bootstrap/scss/bootstrap';
+@import './variables.scss';
+@import './components/navbar.scss';
 
+
+@mixin special-text($specific-color, $hover-color) {
+    color: $specific-color;
+  
+    &:hover {
+      color: $hover-color; // Use the provided hover color
+    }
+}
 
 * {
     font-family: map-get($fonts, test);;
@@ -16,6 +25,23 @@
     @include search-component-styles();
 }
 
+
+.form{
+    height: calc(100vh - 56px)
+}
+
+.sign-in-btn{
+    outline: none;
+    border: none;
+
+    @include special-link;
+ 
+}
+.forgot-password,
+.sign-up-link{
+    text-decoration: none;
+    @include special-text(map-get($text, raspberry), map-get($general, purple));
+}
 
 
 

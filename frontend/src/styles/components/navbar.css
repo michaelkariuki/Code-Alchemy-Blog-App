@@ -23,8 +23,9 @@
   outline: 1px solid #282C35;
 }
 
-.account-btn {
-  width: 50px;
+.account-btn .profile-icon {
+  width: 30px;
+  height: 30px;
 }
 
 /*# sourceMappingURL=navbar.css.map */

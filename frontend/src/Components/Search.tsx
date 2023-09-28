@@ -2,7 +2,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { RiSearchLine } from "react-icons/ri";
 
-const SearchComponent: React.FC = () => {
+interface SearchComponentProps {
+  isNavbarCollapsed: boolean;
+}
+
+const SearchComponent: React.FC<SearchComponentProps> = ({
+  isNavbarCollapsed,
+}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearchInputVisible, setIsSearchInputVisible] = useState(false);
 
@@ -19,10 +25,10 @@ const SearchComponent: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Add your search function here and pass searchTerm
-    if (searchTerm === ""){
-        return
-    }else{
-        searchFunction(searchTerm);
+    if (searchTerm === "") {
+      return;
+    } else {
+      searchFunction(searchTerm);
     }
   };
 
@@ -31,10 +37,21 @@ const SearchComponent: React.FC = () => {
     console.log("Searching for:", term);
     // You can call your API or perform the search based on the term
   };
+  
   const renderSearchIconInputField = () => {
     return (
       <InputGroup>
-        {isSearchInputVisible && (
+        {isNavbarCollapsed ? (
+          isSearchInputVisible && (
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={handleSearchInputChange}
+              placeholder="Search..."
+              className="search-nav rounded-3"
+            />
+          )
+        ) : (
           <input
             type="text"
             value={searchTerm}
@@ -44,7 +61,7 @@ const SearchComponent: React.FC = () => {
           />
         )}
         <Button
-          type="submit" 
+          type="submit"
           variant="outline-none"
           className="rounded-3"
           onClick={handleSearchIconClick}
@@ -67,6 +84,9 @@ const SearchComponent: React.FC = () => {
         if (searchTerm === "") {
           setIsSearchInputVisible(false);
         }
+        // else if(){
+        //   setIsSearchInputVisible(true);
+        // }
       }
     },
     [searchTerm]
