@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+.popular-lists-item-wrapper {
+  background-color: #F9F9FB;
+  margin-bottom: 1.5rem;
+  padding: 0 !important;
+  max-width: 774px !important;
+}
+.popular-lists-item-wrapper .popular-lists-content-wrapper {
+  padding: 1.5rem 2rem;
+}
+@media screen and (max-width: 767px) {
+  .popular-lists-item-wrapper .popular-lists-content-wrapper {
+    /* Styles for screens smaller than 768 pixels go here */
+    padding: 1.5rem 1rem;
+  }
+}
+.popular-lists-item-wrapper .popular-lists-content-wrapper .popular-lists-content-idx {
+  margin-bottom: 0.5rem;
+}
+.popular-lists-item-wrapper .popular-lists-content-wrapper .popular-lists-content-idx, .popular-lists-item-wrapper .popular-lists-content-wrapper .popular-lists-content-title {
+  font-size: 1.125em;
+}
+.popular-lists-item-wrapper .popular-lists-content-wrapper .popular-lists-content-title {
+  font-weight: 600;
+  word-spacing: 0.3rem;
+  margin-bottom: 1rem;
+}
+@media screen and (max-width: 767px) {
+  .popular-lists-item-wrapper .popular-lists-content-wrapper .popular-lists-content-title {
+    /* Styles for screens smaller than 768 pixels go here */
+    font-size: 16px;
+    word-spacing: 0;
+  }
+}
+.popular-lists-item-wrapper .popular-lists-content-wrapper .popular-lists-content-text {
+  font-size: 12px;
+  color: #9FA4AF;
+  font-weight: 500;
+}
+.popular-lists-item-wrapper .popular-lists-image-wrapper {
+  max-width: 387px;
+  max-height: 237px;
+}
+.popular-lists-item-wrapper .popular-lists-image-wrapper img {
+  height: 100%;
+}
+
+/*# sourceMappingURL=PopularListsItem.css.map */

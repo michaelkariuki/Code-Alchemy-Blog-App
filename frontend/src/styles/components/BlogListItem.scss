@@ -1,0 +1,82 @@
+@use "../main.scss" as main;
+@use "../variables.scss" as var;
+
+
+.blog-list-content-wrapper{
+    // font-family: map-get($map: var.$fonts, $key: primary);
+    // @include main.test-border(green);
+    // border: 1px solid green !important;
+    margin-bottom: 3.5rem;
+    background-color: unset !important;
+    // border-color: unset;
+    border: none !important;
+
+    img{
+        width: 100%;
+        height: 350px;
+        border: none !important;
+    }
+
+    .content-title{
+        font-size: map-get($map: var.$font-sizes, $key: title2);
+        font-weight: 600;
+        word-spacing: .3rem ;
+
+                
+        @media screen and (max-width: 991px) {
+            /* Styles for screens smaller than 768 pixels go here */
+            // font-size: map-get($map: var.$font-sizes, $key: base);
+            word-spacing: 0 ;
+        }
+
+                        
+        @media screen and (max-width: 767px) {
+            /* Styles for screens smaller than 768 pixels go here */
+            font-size: map-get($map: var.$font-sizes, $key: title3);
+            // word-spacing: 0 ;
+        }
+
+        @media screen and (max-width: 576px) {
+            /* Styles for screens smaller than 768 pixels go here */
+            font-size: map-get($map: var.$font-sizes, $key: base);
+            // word-spacing: 0 ;
+        }
+    }
+
+    .content-text{
+        font-size: map-get($map: var.$font-sizes, $key: small-text);
+        color: map-get($map: var.$text, $key: silver);
+        font-weight: 500;
+    }
+
+    .preview-text{
+        margin-top: 1rem;
+    }
+}
+
+.new-lists-style{
+
+    @media screen and (min-width: 699px) and (max-width: 767px) {
+        /* Styles for screens between 768 and 991 pixels go here */
+        width: 70%!important;
+      }
+
+    & > img{
+        width: 100%;
+        height: 230px;
+        border: none !important;
+    }
+
+    .content-title {
+        font-size: map-get($map: var.$font-sizes, $key: title3)!important;
+
+        
+        @media screen and (max-width: 991px) {
+            /* Styles for screens smaller than 768 pixels go here */
+            font-size: map-get($map: var.$font-sizes, $key: base);
+            word-spacing: 0 ;
+
+        }
+    }
+}
+

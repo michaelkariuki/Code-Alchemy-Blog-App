@@ -1,7 +1,10 @@
 /* The following line can be included in a src/App.scss */
+
+// @import "App\frontend\node_modules\bootstrap\scss\_card.scss";
 @import '~bootstrap/scss/bootstrap';
 @import './variables.scss';
 @import './components/navbar.scss';
+@import './Mixins.scss';
 
 
 @mixin special-text($specific-color, $hover-color) {
@@ -12,8 +15,10 @@
     }
 }
 
-* {
-    font-family: map-get($fonts, test);;
+@mixin changeBodyBackgroundColor($color) {
+  body {
+    background-color: $color !important;
+  }
 }
 
 @mixin search-component-styles(){
@@ -21,6 +26,27 @@
     align-items: center;
 }
 
+// @mixin test-border($color){
+//     border: 1px solid $color !important;
+// }
+
+* {
+    font-family: map-get($fonts, primary);
+    font-weight: 600;
+}
+
+body{
+    background-color: map-get($map: $general, $key: platinumWhite);
+    // min-width: 500px;
+
+    // background-color: red;
+    // background-color: map-get($map: $general, $key: deepPurple);
+}
+
+// .app-body{
+//     background-color: map-get($map: $general, $key: ghost);
+//     z-index: -2;
+// }
 .search-component {
     @include search-component-styles();
 }
@@ -33,7 +59,7 @@
 .sign-in-btn{
     outline: none;
     border: none;
-
+    min-width: 85px;
     @include special-link;
  
 }
@@ -43,6 +69,233 @@
     @include special-text(map-get($text, raspberry), map-get($general, purple));
 }
 
+ol, li{
+    padding: 0;
+}
 
+.form-card{
+    background-color: map-get($map: $general, $key: ghost);
+    box-shadow: 4px 10px 15px -3px rgba(0,0,0,0.3);
+    // z-index: -1 !important;
+    // position: relative;
+    // opacity: 0;
+    // transition: opacity 0.5s ease-in-out;
+  
+    // &.visible {
+    //   opacity: 1;
+    // }
+}
+
+.deep-purple-bg{
+    // background-color: map-get($map: $general, $key: deepPurple);
+    @include changeBodyBackgroundColor(map-get($map: $general, $key: deepPurple));
+}
+
+.profile-icon-signup{
+    width: 200px;
+    height: 200px;
+
+
+}
+
+// Home and profile css
+$banner-height : 300px;
+$profile-pic-w : 150px;
+$profile-pic-h : $profile-pic-w;
+
+.content-wrapper{
+    @include test-border(pink);
+    width: 100%;
+    padding: 0;
+    
+    .content{
+        margin: 0 auto 2.5rem auto;
+    }
+
+    .banner-offset{
+        margin-bottom: calc(2.5rem + ($profile-pic-h / 2)) !important;
+    }
+
+    .profile-banner-wrapper{
+        @include test-border(#000);
+        height: $banner-height;
+        background-color: burlywood;
+        position: relative;
+        // overflow: hidden;
+        z-index: -1;
+
+        @media screen and (max-width: 576px) {
+            height: calc($banner-height/2);
+    
+    
+        }
+        .profile-banner{
+            padding: 0;
+            height: inherit;
+            position: absolute;
+            z-index: -1;
+        }
+        
+        .profile-pic-wrapper{
+            @include test-border(red);
+            padding: 0;
+            display: flex;
+            // flex-direction: row;
+            margin: 0 auto;
+            align-items: end;
+            // z-index: 2;
+          
+            .pic-profile{
+                @include test-border(#000);
+                position: relative;
+                // z-index: 2;
+                width: $profile-pic-w;
+                height: $profile-pic-h;
+                top: calc($profile-pic-w / 2);
+                // margin-top: 100px;
+
+                @media screen and (max-width: 767px) {
+                    /* Styles for screens smaller than 768 pixels go here */
+                    width: 100px;
+                    height: 100px;
+                    top: calc(100px / 2);
+            
+            
+                }
+
+                @media screen and (max-width: 576px) {
+                    /* Styles for screens smaller than 768 pixels go here */
+                    width: 75px;
+                    height: 75px;
+                    top: calc(75px / 2);
+            
+            
+                }
+            }
+            .profile-text{
+                padding: 0;
+                margin: 0 auto 0 0;
+
+                h3{
+                    @media screen and (max-width: 767px) {
+                        font-size: map-get($map: $font-sizes, $key: title3);
+                
+                
+                    }
+
+                    @media screen and (max-width: 576px) {
+                        font-size: map-get($map: $font-sizes, $key: small-text);
+                
+                
+                    }
+                }
+    
+            }
+            
+            .socials-wrapper{
+                display: flex;
+                margin: 0 1.5rem .5rem 0;
+
+                @media screen and (max-width: 767px) {
+                   margin-right: .5rem;
+            
+                }
+                .socials-item{
+                    @include test-border(green);
+                    width: 50px;
+                    height: 50px;
+                }
+
+                .socials-item:not(:last-child){
+                    margin-right: 1.5rem;
+                }
+            }
+        }
+
+    }
+
+    .blog-items-wrapper{
+        // @include test-border(blue);
+        // height: 100px;
+        
+        .wrapper{
+            // padding: 1rem;
+        }
+    
+        .blog-items{
+        // @include test-border(black);
+
+        }
+
+        .blog-items-navigation{
+            padding: 0;
+            // margin-bottom: 1rem;
+        }
+
+        .popular-items-wrapper{
+            margin-bottom: 1rem;
+        }
+    }
+
+    .reading-lists-header{
+        // @include test-border(black);   
+        background-color: map-get($map: $general, $key: ghost);         
+        // height: 100px;
+        // width: 100%;
+        .reading-lists-header-wrapper{
+            margin: 0 auto 2rem auto;
+            padding: 3rem 0 2rem 0;
+
+            .header-title{
+                margin-bottom: 1rem;
+                font-weight: 700!important;
+                font-size: map-get($map: $font-sizes, $key: title2);
+            }
+    
+            .header-text{
+                // font-size: map-get($map: $font-sizes, $key: small-text);
+                font-weight: 500!important;
+            }
+        }
+    }
+
+    .reading-lists-content{
+        // @include test-border(yellow);
+        margin: 2.5rem auto;
+    }       
+
+    .home-carousel-wrapper{
+        // @include test-border(red);
+        width: 100%;
+        height: calc(80vh);
+        margin-bottom: 3rem;
+        @media screen and (max-width: 767px) {
+            /* Styles for screens smaller than 768 pixels go here */
+            height: calc(90vh);
+            margin-bottom: 2rem;
+
+
+        }
+        // background-color: transparent;
+    }
+
+    // .nav-bar-home{
+    //     background-color: transparent;
+    //     & > a {
+    //         color: map-get($map: $general, $key: ghost);
+    //     }
+    // }
+
+}   
+
+
+.footer-wrapper{
+    background-color: map-get($map: $general, $key: ghost);
+
+    &>*{
+        font-family: map-get($map: $fonts, $key: primary);
+        font-size: map-get($map: $font-sizes, $key: small-text);
+    }
+}
 
 

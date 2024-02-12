@@ -1,0 +1,29 @@
+@mixin set-icon-size($size){
+    width: $size;
+    height: $size;
+}
+
+
+.icon-wrapper{
+    width: 100%;
+    .icon-item{
+        img{
+            @include set-icon-size(36px);
+
+            @media screen and (max-width: 767px) {
+                @include set-icon-size((25px))
+        
+        
+            }
+        }
+    }
+
+    .margin-right:not(:last-child){
+        margin-right: 1.5rem;
+    }
+
+    // .icon-lg{
+    //     @include set-icon-size(36px);
+    // }
+}
+

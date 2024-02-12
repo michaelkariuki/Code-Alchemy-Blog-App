@@ -39,7 +39,7 @@ module.exports = {
   getUser: async (data) => {
     const user = await prisma.user.findFirst({
       where: {
-        AND: [
+        OR: [
           ...data
         ]
       },

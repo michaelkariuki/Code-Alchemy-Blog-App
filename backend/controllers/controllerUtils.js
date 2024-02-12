@@ -1,16 +1,12 @@
-exports.filterObjects = (keysToRemove, obj) => {
-    // if (Array.isArray(keysToKeep) && typeof obj === 'object'){
-  
-    // }
-    // console.log(keysToRemove, obj)
-    let filtered = undefined
-    const filteredEntries = Object.entries(obj).filter(([key]) => {
-        keysToRemove.includes(key)
-    });
+exports.filterObjects = (object, keys) => {
+    let filtered = {}
+    for(const key of keys) {
+        if(object.hasOwnProperty(key)){
+            filtered[key] = object[key]
+        }
+    }
 
-    filtered = Object.fromEntries(filteredEntries)
     return filtered
-
 }
 
 exports.castObject = (obj) => {

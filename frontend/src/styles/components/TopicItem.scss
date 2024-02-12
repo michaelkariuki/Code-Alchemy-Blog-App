@@ -1,0 +1,34 @@
+@use "../variables.scss" as var;
+@use "../Mixins.scss" as mixins;
+
+.topic-list-item-wrapper{
+    // @include mixins.test-border(green);
+    @include mixins.content-box-shadow();
+    background-color: map-get($map: var.$general, $key: ghost);
+    margin-bottom: 1rem;
+    // margin-right: 1rem;
+    padding: 2rem 1rem;
+    // margin-bottom: 5rem;
+    .topic-list-content-wrapper{
+        padding: 0 1.2rem;
+        .item-title{
+            font-size: map-get($map: var.$font-sizes, $key: base);
+            margin-bottom: 1.5rem;
+            // font-weight: bold;
+            
+            span{
+                margin-right: 1rem;
+            }
+
+            span > img{
+                width: 48px;
+                height: 48px;
+            }
+        }
+
+        .item-text{
+            font-size: map-get($map: var.$font-sizes, $key: small-text);
+            font-weight: 300;
+        }   
+    }
+}

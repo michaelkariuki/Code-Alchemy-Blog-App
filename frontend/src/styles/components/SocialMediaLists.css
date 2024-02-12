@@ -1,0 +1,18 @@
+.icon-wrapper {
+  width: 100%;
+}
+.icon-wrapper .icon-item img {
+  width: 36px;
+  height: 36px;
+}
+@media screen and (max-width: 767px) {
+  .icon-wrapper .icon-item img {
+    width: 25px;
+    height: 25px;
+  }
+}
+.icon-wrapper .margin-right:not(:last-child) {
+  margin-right: 1.5rem;
+}
+
+/*# sourceMappingURL=SocialMediaLists.css.map */

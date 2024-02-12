@@ -1,0 +1,61 @@
+@use "../variables.scss" as var;
+@use "../Mixins.scss" as mixins;
+
+.reading-list-item-wrapper{
+    // @include mixins.test-border(green);
+    // margin: 0 auto 5rem auto;
+    margin-bottom: 5rem;
+
+    @media screen and (max-width: 767px) {
+        /* Styles for screens smaller than 768 pixels go here */
+        margin-left: auto;
+        margin-right: auto;
+      }
+    .reading-list-image-wrapper{
+        // @include mixins.test-border(blue);
+
+        max-width: 184px;
+        max-height: 228px;
+        // height: ;
+        
+        img{
+            height: 100%;
+        }
+    }
+
+    .reading-list-content-wrapper{
+        padding: 0 1.2rem;
+        .item-title{
+            font-size: map-get($map: var.$font-sizes, $key: base);
+            margin-bottom: 1.5rem;
+            // font-weight: bold;
+            @media screen and (min-width: 768px) and (max-width: 991px) {
+                /* Styles for screens between 768 and 991 pixels go here */
+                margin-bottom: 1rem;
+
+              }
+
+            span{
+                margin-right: 1rem;
+            }
+
+            span > img{
+                width: 48px;
+                height: 48px;
+            }
+        }
+
+        .item-text{
+            font-size: map-get($map: var.$font-sizes, $key: small-text);
+            font-weight: 300;
+        }   
+    }
+}
+
+.popular-lists-style {
+    margin-bottom: 2rem !important;
+    .reading-list-image-wrapper{
+        width: 130px;
+        height: 149px;
+    }
+}

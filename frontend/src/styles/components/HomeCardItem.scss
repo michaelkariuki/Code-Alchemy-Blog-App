@@ -1,0 +1,120 @@
+@use "../main.scss" as main;
+@use "../variables.scss" as var;
+@use "../Mixins.scss" as mixins;
+.home-card-item-wrapper{
+    // @include mixins.test-border(black);
+    margin-bottom: 6rem;
+
+   .home-card-item-header-section{
+        margin-bottom: 1.5rem;
+
+        .home-card-item-header-title{
+            font-weight: 700;
+            font-size: map-get($map: var.$font-sizes, $key: title2);
+
+        }
+   }
+   
+   .home-card-item-container{
+        // @include mixins.test-border(red);
+
+        .home-card-item-image-wrapper{
+            padding: 0;
+
+
+            @media screen and (max-width: 768px) {
+                margin-bottom: 2rem;
+              }
+            
+
+            // .card-img{
+            // position: relative;
+
+            // &::before {
+            //     content: "";
+            //     position: absolute;
+            //     top: 0;
+            //     right: 0;
+            //     bottom: 0;
+            //     left: 0;
+            //     background-color: map-get($map: var.$general, $key: deepPurple70);
+            //         }
+            //     }
+
+            .home-card-item-overlay{
+                padding: 1.5rem;
+
+      
+                .content-text{
+                    font-size: map-get($map: var.$font-sizes, $key: small-text);
+                    // color: map-get($map: var.$text, $key: silver);
+                    font-weight: 500;
+                }
+    
+                .content-title{
+                    font-size: map-get($map: var.$font-sizes, $key: base);
+                    font-weight: 600;
+                    margin-bottom: 1.4rem;
+                }
+            }
+  
+        }
+
+        .home-card-item-mini-cards-wrapper{
+            padding: 0;
+        }
+   }
+
+ 
+}
+
+.mini-card-wrapper{
+    padding: 0 1rem 0 0;
+
+    &:not(:nth-last-child(-n+2)){
+        padding-bottom: .5rem;
+    }
+    &:nth-last-child(-n+2){
+        padding-top: .5rem
+    }
+
+    @media screen and (max-width: 768px) {
+        padding-bottom: .5rem!important;
+        padding-right: 0;
+      }
+    .mini-card-container{
+        @include mixins.content-box-shadow();
+        background-color: map-get($map: var.$general, $key: ghost);
+        // margin-right: .5rem;
+        padding: .8rem 1rem;
+        &:not(:nth-last-child(-n+2)){
+            // margin-bottom: .5rem;
+        }
+        
+        @media screen and (max-width: 768px) {
+            // Adjust the padding for screens 768 pixels and lower
+            padding: 3rem 2rem; 
+
+
+        }
+
+        .mini-card-tag{
+            font-size: map-get($map: var.$font-sizes, $key: small-text);
+            color: map-get($map: var.$text, $key: silver);
+            margin-bottom: .5rem;
+    
+        }
+    
+        .mini-card-title{
+            font-size: map-get($map: var.$font-sizes, $key: small-text);
+            font-weight: 600;
+            
+        }
+    }
+
+    
+    &:hover{
+        
+    }
+}
+

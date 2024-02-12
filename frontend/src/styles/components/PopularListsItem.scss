@@ -1,0 +1,58 @@
+@use "../variables.scss" as var;
+@use "../Mixins.scss" as mixins;
+
+.popular-lists-item-wrapper{
+    background-color: map-get($map: var.$general, $key: ghost );
+    margin-bottom: 1.5rem;
+    padding: 0 !important;
+    max-width: calc(387px * 2)!important;
+    // border: none!important;
+    // border-color: unset!important;
+    .popular-lists-content-wrapper{
+        padding: 1.5rem 2rem;
+
+        @media screen and (max-width: 767px) {
+            /* Styles for screens smaller than 768 pixels go here */
+            padding: 1.5rem 1rem;
+
+        }
+
+        .popular-lists-content-idx{
+            margin-bottom: .5rem;
+        }
+
+        .popular-lists-content-idx, .popular-lists-content-title{
+            font-size: map-get($map: var.$font-sizes, $key: title3);
+        }
+        .popular-lists-content-title{
+            font-weight: 600;
+            word-spacing: .3rem ;
+            margin-bottom: 1rem;
+
+            @media screen and (max-width: 767px) {
+                /* Styles for screens smaller than 768 pixels go here */
+                font-size: map-get($map: var.$font-sizes, $key: base);
+                word-spacing: 0 ;
+    
+            }
+        }
+
+                
+
+    
+        .popular-lists-content-text{
+            font-size: map-get($map: var.$font-sizes, $key: small-text);
+            color: map-get($map: var.$text, $key: silver);
+            font-weight: 500;
+        }
+    }
+
+    .popular-lists-image-wrapper{
+        max-width: 387px;
+        max-height: 237px;
+        
+        img{
+            height: 100%;
+        }
+    }
+}

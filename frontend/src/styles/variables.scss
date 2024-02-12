@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@300&display=swap');
-
+// @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 $font-sizes: (
   base: 16px,
@@ -11,7 +12,9 @@ $font-sizes: (
   blockquote: 24px,
   title1: 2.25em,
   title2: 1.5em,
-  title3: 1.125em
+  title3: 1.125em,
+  small-text: 12px,
+  semi-small-text: 14px,
 );
 
 $fonts: (
@@ -19,22 +22,37 @@ $fonts: (
 );
 
 $general: (
+  indicator_white: #D8D8D8,
   yellow: #FFD581,
   coral: #FFA599,
-  pink: #FF8FAC,
+  pink: #FF5480,
   lavender: #FE90EC,
   ghost: #F9F9FB,
   green: #00DC90,
   purple: #9283E0,
   blue: #27AEFF,
+  platinumWhite: #e5e4e2,
   charcoal_gray: #282C35,
+  customPink: #ee0979,
+  deepPurple: #18003C,
+  deepPurple2: #1B0042,
+  deepPurple2_70: rgba(28, 0, 66, 0.7),
+  deepPurple70: rgba(24, 0, 60, 0.7),
+  deepPurple30: rgba(24, 0, 60, 0.3),
+  mutedGrey: #ccc,
+  
 );
 
 $text: (
-  raspberry: #FF5480,
+  raspberry: #ee0979,
+  pink: #FF5480,
+  // customPink: #ee0979,
   silver: #9FA4AF,
   lavender: #9283E0,
-  black: #000000
+  black: #000000,
+  blogTextBlack: #4A4A4A,
+  blogLink: #27AEFF,
+  blogBlockQuote: #9283E0,
 );
 
 

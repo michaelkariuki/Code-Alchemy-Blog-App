@@ -1,0 +1,16 @@
+@use "./variables.scss" as var;
+
+
+@mixin muted-text($font-size: map-get($map: var.$font-sizes, $key: small-text)) {
+    font-size: $font-size;
+    color: map-get($map: var.$text, $key: silver);
+    font-weight: 500;
+}
+
+@mixin test-border($color){
+    border: 1px solid $color !important;
+}
+
+@mixin content-box-shadow(){
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}

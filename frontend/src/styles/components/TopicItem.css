@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+.topic-list-item-wrapper {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: #F9F9FB;
+  margin-bottom: 1rem;
+  padding: 2rem 1rem;
+}
+.topic-list-item-wrapper .topic-list-content-wrapper {
+  padding: 0 1.2rem;
+}
+.topic-list-item-wrapper .topic-list-content-wrapper .item-title {
+  font-size: 16px;
+  margin-bottom: 1.5rem;
+}
+.topic-list-item-wrapper .topic-list-content-wrapper .item-title span {
+  margin-right: 1rem;
+}
+.topic-list-item-wrapper .topic-list-content-wrapper .item-title span > img {
+  width: 48px;
+  height: 48px;
+}
+.topic-list-item-wrapper .topic-list-content-wrapper .item-text {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+/*# sourceMappingURL=TopicItem.css.map */

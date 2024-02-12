@@ -1,0 +1,180 @@
+@use "../../main.scss" as main;
+@use "../../variables.scss" as var;
+@use "../../Mixins.scss" as mixins;
+
+
+.blog-editor-header-wrapper{
+    margin: 0!important;
+    padding: 3rem 0 2rem 0;
+
+    div{
+        .header-title{
+            margin-bottom: 1rem;
+            font-weight: 700!important;
+            font-size: map-get($map: var.$font-sizes, $key: title2);
+        }
+    
+        .header-text{
+            // font-size: map-get($map: $font-sizes, $key: small-text);
+            font-weight: 500!important;
+        }
+    }
+}
+
+.editor-actions-wrapper{
+    // padding-bottom: 2rem;
+    .editor-actions{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+    
+        font-family: map-get($map: var.$fonts, $key: primary);
+        font-weight:700;
+        font-size: map-get($map: var.$font-sizes, $key:small-text );
+        color: map-get($map: var.$general, $key: charcoal_gray);
+
+        padding: .8rem 1.2rem;
+        border-radius: 23px;
+
+        span{
+            margin-right: .2rem;
+
+            svg {
+                width: 20px;
+                height:20px;
+            }
+        }
+
+        &:not(:last-child) {
+            // Your styling here
+            margin-right: .5rem;
+            // Add any other styles you want to apply to all elements except the last one
+        }
+    }
+
+
+
+    .special-btn{
+        background-color: map-get($map: var.$general, $key: purple);
+        color: map-get($map: var.$general, $key: ghost);
+
+        span{
+            .special-btn-icon{ 
+                width: 16px;
+                height:16px;
+                stroke-width: 1px;
+            }
+        }
+
+    }
+
+}
+
+.editor-wrapper {
+    // height: 90dvh;
+    // width: 100%;
+    // padding-bottom: 1rem;
+    // margin-bottom: 1.7rem;
+    &>form{
+        width: 100%;
+        border: 2px solid map-get($map: var.$general, $key: mutedGrey) !important;
+        padding: 1rem 1.5rem;
+        .form-group{
+            margin-bottom: 1.2rem;
+
+            &>label{
+                margin-bottom: .8rem;
+            }
+
+            .form-control:focus {
+                border-color: map-get($map: var.$general, $key: customPink);
+                $darkerPink: darken(map-get($map: var.$general, $key: customPink), 10%);
+                // box-shadow: 0 0 0 0.2rem $darkerPink;
+                box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(238,9,121,0.58);
+                outline: 2px solid rgba(238,9,121,0.58);
+
+            } 
+        }
+
+        .blog-editor-header{
+            h1{
+                font-weight: bold;
+            }
+            
+        }
+
+
+
+    }
+
+
+    .quill {
+        // height: 90%;
+        width: 100%;
+        
+        // position: fixed;
+        // bottom: 0;
+        font-family: map-get($map: var.$fonts, $key: primary);
+
+   
+
+        .ql-toolbar {
+            background-color: map-get($map: var.$general, $key: ghost);
+            border-radius: 10px 10px 0 0;
+
+            // .ql-stroke {
+            //     fill: none;
+            //     stroke: map-get($map: var.$general, $key: ghost);
+            // }
+
+            // .ql-fill {
+            //     fill: map-get($map: var.$general, $key: ghost);
+            //     stroke: none;
+            // }
+
+            // .ql-picker {
+            //     color: map-get($map: var.$general, $key: ghost);
+
+            //     .ql-picker-item {
+            //         color: map-get($map: var.$general, $key: charcoal_gray);
+            //     }
+            // }
+        }
+
+        .ql-container {
+            background-color: map-get($map: var.$general, $key: ghost);
+            border-radius: 0 0 10px 10px;
+            // .title-container {
+            //     font-weight: bold;
+            //     font-size: 24px;
+            //     padding: 10px;
+            //     border-bottom: 1px solid #ddd;
+            //   }
+
+            .ql-editor{
+                min-height: 500px;
+                // overflow-y: auto;
+
+                &>*{
+                    // color: map-get($map: var.$general, $key: charcoal_gray);
+                    
+                    color: map-get($map: var.$text, $key: blogTextBlack);
+                    text-align: justify;
+                    line-height: 1.6;
+                    font-weight: lighter;
+                    font-size: map-get($map: var.$font-sizes, $key: base);
+                
+
+                }
+
+                &>h1, h2{
+                    font-weight:600;
+                    font-size: map-get($map: var.$font-sizes, $key: h4);
+                    color: map-get($map: var.$general, $key: charcoal_gray)
+                }
+            }
+        }
+    }
+}

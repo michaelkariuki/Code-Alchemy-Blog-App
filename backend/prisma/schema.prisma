@@ -31,7 +31,7 @@ model Profile {
   picture    String?
   bio        String?
   location   String?
-  interests  String?
+  interests  String[]
   user_id    Int      @unique
   User       User     @relation("UserProfile", fields: [user_id], references: [user_id])
 }

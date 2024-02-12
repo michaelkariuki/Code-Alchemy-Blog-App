@@ -1,7 +1,6 @@
-const bcrypt = require('bcrypt');
-const userModel = require('../models/PrismaUserModels')
-const utils = require('./controllerUtils')
-const saltRounds = 10
+const bcrypt = require("bcrypt");
+const userModel = require("../models/PrismaUserModels");
+const saltRounds = 10;
 
 exports.login = async (req, res) => {
   //Check if username or email
@@ -13,23 +12,37 @@ exports.login = async (req, res) => {
   try {
     const { username, password, email } = req.body;
     let user = req.body; //Info here should be parsed {check whether actually email or username (regex)}
-
+    console.log(user)
     // Check if user used email or password for authentication (both unique)
     if (username) {
-      user = await userModel.getLoginData("username", username)
-      
+      user = await userModel.getLoginData("username", username);
     } else if (email) {
-      user = await userModel.getLoginData("email", email)
-    } else{
-      return res.status(401).json({
-        error: "No username or email",
+      user = await userModel.getLoginData("email", email);
+    } else {
+      // return res.status(401).json({
+      //   error: "No username or email",
+      // });
+      return res.status(400).json({
+        message: {
+          title: "Login Failed",
+          text: "Username or password is wrong",
+          type: "danger",
+        },
       });
     }
 
     // If the user doesn't exist, return an error
     if (!user) {
-      return res.status(401).json({
-        error: "Invalid credentials",
+      // return res.status(401).json({
+      //   error: "Invalid credentials",
+      // });
+      return res.status(400).json({
+        message: {
+          title: "Login Failed",
+          text: "Username or password is invalid",
+          type: "danger",
+        },
+        info: "User does not exist"
       });
     }
 
@@ -39,16 +52,25 @@ exports.login = async (req, res) => {
 
       // If the passwords don't match, return an error
       if (!passwordMatch) {
-        return res.status(401).json({
-          error: "Invalid Credentials",
+        return res.status(400).json({
+          message: {
+            title: "Login Failed",
+            text: "Username or password is invalid",
+            type: "danger",
+          },
         });
       }
     } else {
-      return res.status(401).json({
-        error: "No password",
+      return res.status(400).json({
+        message: {
+          title: "Login Failed",
+          text: "Username or password is invalid",
+          type: "danger",
+        },
+        info: "No password provided"
       });
     }
-   
+
     // Passwords match, user is authenticated
     const userSessionData = {
       user_id: user.username,
@@ -63,11 +85,19 @@ exports.login = async (req, res) => {
 
     req.session.sessionData = userSessionData;
 
-    res.json({
+    return res.status(200).json({
       success: "Login successfull",
       // user: user.username,
-      session: req.session
+      session: req.session,
     });
+
+    // return res.status(400).json({
+    //   message: {
+    //     title: "Login Failed",
+    //     text: "Username or password is wrong",
+    //     type: "danger",
+    //   },
+    // });
   } catch (error) {
     console.error("Error logging in", error);
     return res.status(500).json({
@@ -76,70 +106,75 @@ exports.login = async (req, res) => {
   }
 };
 
+// CREATE USER
 exports.signup = async (req, res) => {
-  // let filterKeys = ['username', 'first_name', 'last_name', 'email', 'password']
   try {
-    let userData = utils.castObject(req.body)
-    // Check if optional profile data is provided
-    let profileData = req.body.profileData
-      ? castObject(req.body.profileData)
-      : {};
-
-    delete userData.profileData;
+    let userData = req.parsedData.userData;
+    let profileData = req.parsedData.profileData;
 
     // Create hash for user's password
-    if (userData.password){
+    if (userData.password) {
       const hashedPassword = await bcrypt.hash(userData.password, saltRounds);
-      userData.password = hashedPassword
+      userData.password = hashedPassword;
     } else {
       return res.status(400).json({
-        message: "User data missing : password",
-        // userData: userData
-      })
-    }
-    
-    // if (!utils.isObjEmpty(profileData)){
-    //   delete userData.profileData
-    // } 
-
-    console.log("data : " ,userData)
-    let user = undefined
-    let profile = undefined
-
-    // Check if user exists
-    if (userData.username && userData.email) {
-      const checkUser = await userModel.getUser([
-        {username: userData.username},
-        {email: userData.email}
-      ]);
-
-      if (checkUser){
-        return res.status(200).json({
-          message: "User already exists",
-          // user: checkUser.username
-        })
-      }else{
-        // Create a new user
-        // Create a new profile in the Profile model and associate it with the user
-        user = await userModel.createUser(userData);
-        profileData.user_id = user.user_id 
-        profile = await userModel.createProfile(profileData);
-      }
-    } else{
-      return res.status(400).json({
-        message: `Insufficient data to create user`,
-        // userData: userData
+        message: {
+          title: "Sign up Failed",
+          message: "Unable process data",
+          type: "warning",
+        },
+        info: "No password provided",
       });
     }
-    
+
+    if (userData.username || userData.email) {
+      const checkUser = await userModel.getUser([
+        { username: userData.username },
+        { email: userData.email },
+      ]);
+
+      if (checkUser) {
+        return res.status(200).json({
+          message: {
+            title: "Sign up Failed",
+            message: "User already exists",
+            type: "warning",
+          },
+          info: "User already exists",
+        });
+      } else {
+        // Create a new user
+        // Create a new profile in the Profile model and associate it with the user
+        const user = await userModel.createUser(userData);
+        profileData.user_id = user.user_id;
+        await userModel.createProfile(profileData);
+      }
+    } else {
+      return res.status(400).json({
+        message: {
+          title: "ERROR!",
+          message: "Unable process data",
+          type: "danger",
+        },
+        info: "Insufficient data to create user",
+      });
+    }
+
     return res.status(201).json({
-      success: "User registered successfully",
-      user : user,
-      // userProfile : profile
+      message: {
+        title: "Success",
+        message: "User created successfully",
+        type: "success",
+      },
     });
   } catch (error) {
     console.error("Error during registration", error);
     return res.status(500).json({
+      message: {
+        title: "ERROR!",
+        message: "Error occured. Unable process data",
+        type: "danger",
+      },
       error: "An error occurred during registration",
     });
   }
@@ -148,7 +183,7 @@ exports.signup = async (req, res) => {
 exports.logout = async (req, res) => {
   // console.log(req)
   // console.log(req.session)
-  if (req.session.sessionData){
+  if (req.session.sessionData) {
     req.session.destroy((err) => {
       if (err) {
         console.error("Error destroying session:", err);
@@ -158,15 +193,9 @@ exports.logout = async (req, res) => {
       }
       return res.json({ message: "Logged out successfully" });
     });
-    
-  }else{
+  } else {
     return res.status(404).json({
       error: "No session data found",
     });
   }
-  
 };
-
-
-
-

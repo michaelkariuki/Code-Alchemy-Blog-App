@@ -1,0 +1,60 @@
+@use "../main.scss" as main;
+@use "../variables.scss" as var;
+@use "../Mixins.scss" as mixins;
+
+$slider-height: 137px;
+
+.slider-wrapper {
+    padding: 0;
+    // position: relative;
+    // width: max-content;
+    // height: 192.95px;
+    
+    .slider-content {
+        
+        // max-width: calc(240px + (.4em * 2));
+        overflow-x: hidden;
+        // display: flex;
+        // white-space:nowrap;
+        // flex-wrap: nowrap;
+        // position: relative;
+        // justify-content: flex-end;
+
+        @media screen and (max-width: 768px) {
+                max-width: unset!important;
+          }
+        .slider-img-wrapper {
+             
+            // display: inline;
+            // height: 100%;
+            margin: 0 .4em;
+            transition: transform 0.5s ease;
+
+            div{
+                width: 120px;
+            }
+            img {
+                max-height: $slider-height;
+                width: 120px;
+            }
+    
+            p {
+                padding: 1em .5em;
+                text-align: center;
+            }
+        }    
+    }
+
+
+    .next-icon {
+        max-width: 75px;
+        height: $slider-height;
+        background-color: map-get($map: var.$general, $key: ghost);
+
+        .icon{
+            font-size: 24px;
+            stroke-width: 10px;
+
+        }
+    }
+}

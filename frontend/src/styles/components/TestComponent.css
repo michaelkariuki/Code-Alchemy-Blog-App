@@ -1,0 +1,450 @@
+.frame {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.frame .group {
+  border: 1px solid #d9d9d9;
+  height: 50px; /* Adjust the value based on your design */
+  position: relative;
+  width: 300px; /* Adjust the value based on your design */
+}
+
+.frame .div {
+  align-items: center;
+  display: inline-flex;
+  gap: 5px; /* Adjust the value based on your design */
+  left: 90px; /* Adjust the value based on your design */
+  padding: 15px 0; /* Adjust the value based on your design */
+  position: relative;
+  top: 30px; /* Adjust the value based on your design */
+}
+
+.frame .vector {
+  height: 15px; /* Adjust the value based on your design */
+  position: relative;
+  width: 15px; /* Adjust the value based on your design */
+}
+
+.frame .text-wrapper {
+  color: #27aeff;
+  font-family: "Open Sans-Bold", Helvetica;
+  font-size: 12px; /* Adjust the value based on your design */
+  font-weight: 700;
+  letter-spacing: -0.92px;
+  line-height: normal;
+  margin-top: -1px; /* Adjust the value based on your design */
+  position: relative;
+  width: fit-content;
+}
+
+.frame .div-2 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+}
+
+.frame .frame-wrapper {
+  align-items: flex-end;
+  border-radius: 10px; /* Adjust the value based on your design */
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 20px; /* Adjust the value based on your design */
+  position: relative;
+}
+
+.frame .div-3 {
+  background-color: #282c35;
+  border: 1px solid #000000;
+  height: 30px; /* Adjust the value based on your design */
+  position: relative;
+  width: 300px; /* Adjust the value based on your design */
+}
+
+.frame .div-4 {
+  align-items: center;
+  display: inline-flex;
+  left: 0;
+  padding: 0 10px; /* Adjust the value based on your design */
+  position: absolute;
+  top: 10px; /* Adjust the value based on your design */
+}
+
+.frame .text-wrapper-2 {
+  color: #eaeaea;
+  font-family: "Open Sans-SemiBold", Helvetica;
+  font-size: 15px; /* Adjust the value based on your design */
+  font-weight: 600;
+  letter-spacing: -0.53px;
+  line-height: normal;
+  margin-top: -1px; /* Adjust the value based on your design */
+  position: relative;
+  width: fit-content;
+}
+
+/* ... (continue with the rest of the styles) */
+.frame .icon-chevron-down {
+  height: 15px; /* Adjust the value based on your design */
+  position: relative;
+  width: 15px; /* Adjust the value based on your design */
+}
+
+.frame .rectangle {
+  background-color: rgba(217, 217, 217, 0.5019607843);
+  height: 30px; /* Adjust the value based on your design */
+  left: 101px; /* Adjust the value based on your design */
+  position: absolute;
+  top: 15px; /* Adjust the value based on your design */
+  width: 1px; /* Adjust the value based on your design */
+}
+
+.frame .rectangle-2 {
+  background-color: rgba(217, 217, 217, 0.5019607843);
+  height: 30px; /* Adjust the value based on your design */
+  left: 310px; /* Adjust the value based on your design */
+  position: absolute;
+  top: 15px; /* Adjust the value based on your design */
+  width: 1px; /* Adjust the value based on your design */
+}
+
+.frame .img {
+  height: 40px; /* Adjust the value based on your design */
+  left: 115px; /* Adjust the value based on your design */
+  position: absolute;
+  top: 10px; /* Adjust the value based on your design */
+  width: 190px; /* Adjust the value based on your design */
+}
+
+.frame .div-5 {
+  align-items: flex-start;
+  display: inline-flex;
+  gap: 10px; /* Adjust the value based on your design */
+  left: 120px; /* Adjust the value based on your design */
+  position: absolute;
+  top: 10px; /* Adjust the value based on your design */
+}
+
+.frame .div-6 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 3px; /* Adjust the value based on your design */
+  position: relative;
+}
+
+.frame .image {
+  height: 20px; /* Adjust the value based on your design */
+  position: relative;
+  width: 20px; /* Adjust the value based on your design */
+}
+
+.frame .text-wrapper-3 {
+  color: #eaeaea;
+  font-family: "Open Sans-Bold", Helvetica;
+  font-size: 15px; /* Adjust the value based on your design */
+  font-weight: 700;
+  letter-spacing: -0.53px;
+  line-height: normal;
+  position: relative;
+  width: fit-content;
+}
+
+.frame .img-2 {
+  height: 25px; /* Adjust the value based on your design */
+  position: relative;
+  width: 25px; /* Adjust the value based on your design */
+}
+
+.frame .text-wrapper-4 {
+  color: #eaeaea;
+  font-family: "Open Sans-Bold", Helvetica;
+  font-size: 12px; /* Adjust the value based on your design */
+  font-weight: 700;
+  letter-spacing: -0.53px;
+  line-height: normal;
+  position: relative;
+  width: fit-content;
+}
+
+.frame .div-wrapper {
+  border: 1px solid #000000;
+  height: 500px; /* Adjust the value based on your design */
+  position: relative;
+  width: 300px; /* Adjust the value based on your design */
+}
+
+.frame .div-7 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 30px; /* Adjust the value based on your design */
+  justify-content: center;
+  left: 20px; /* Adjust the value based on your design */
+  position: relative;
+  top: 20px; /* Adjust the value based on your design */
+}
+
+.frame .overlap-wrapper {
+  height: 100px; /* Adjust the value based on your design */
+  position: relative;
+  width: 400px; /* Adjust the value based on your design */
+}
+
+.frame .overlap {
+  height: 100px; /* Adjust the value based on your design */
+  position: relative;
+  width: 400px; /* Adjust the value based on your design */
+}
+
+.frame .div-8 {
+  height: 80px; /* Adjust the value based on your design */
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 20px; /* Adjust the value based on your design */
+  width: 400px; /* Adjust the value based on your design */
+}
+
+.frame .rectangle-3 {
+  height: 80px; /* Adjust the value based on your design */
+  left: -40px; /* Adjust the value based on your design */
+  position: absolute;
+  top: -420px; /* Adjust the value based on your design */
+  width: 410px; /* Adjust the value based on your design */
+}
+
+.frame .overlap-group {
+  height: 60px; /* Adjust the value based on your design */
+  left: 0;
+  position: absolute;
+  top: 20px; /* Adjust the value based on your design */
+  width: 400px; /* Adjust the value based on your design */
+}
+
+.frame .p {
+  color: #686868;
+  font-family: "Open Sans-SemiBold", Helvetica;
+  font-size: 40px; /* Adjust the value based on your design */
+  font-weight: 600;
+  left: 0;
+  letter-spacing: -0.53px;
+  line-height: normal;
+  position: absolute;
+  top: 0;
+}
+
+.frame .line {
+  height: 1px; /* Adjust the value based on your design */
+  left: 1px; /* Adjust the value based on your design */
+  position: absolute;
+  top: 34px; /* Adjust the value based on your design */
+  width: 399px; /* Adjust the value based on your design */
+}
+
+.frame .div-9 {
+  align-items: center;
+  display: inline-flex;
+  left: 200px; /* Adjust the value based on your design */
+  position: absolute;
+  top: 0;
+}
+
+.frame .icon-refresh {
+  height: 8px; /* Adjust the value based on your design */
+  position: relative;
+  width: 8px; /* Adjust the value based on your design */
+}
+
+.frame .text-wrapper-5 {
+  color: #d9d9d9;
+  font-family: "Open Sans-SemiBold", Helvetica;
+  font-size: 10px; /* Adjust the value based on your design */
+  font-weight: 600;
+  letter-spacing: -0.53px;
+  line-height: normal;
+  margin-top: -1px; /* Adjust the value based on your design */
+  position: relative;
+  width: fit-content;
+}
+
+.frame .hello-world-this-is {
+  color: #979797;
+  font-family: "Open Sans-SemiBold", Helvetica;
+  font-size: 15px; /* Adjust the value based on your design */
+  font-weight: 600;
+  letter-spacing: -0.53px;
+  line-height: normal;
+  position: relative;
+  width: 400px; /* Adjust the value based on your design */
+}
+
+.frame .div-5 {
+  align-items: flex-start;
+  display: inline-flex;
+  gap: 10px; /* Adjust the value based on your design */
+  left: 120px; /* Adjust the value based on your design */
+  position: absolute;
+  top: 10px; /* Adjust the value based on your design */
+}
+
+.frame .div-6 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 3px; /* Adjust the value based on your design */
+  position: relative;
+}
+
+.frame .image {
+  height: 20px; /* Adjust the value based on your design */
+  position: relative;
+  width: 20px; /* Adjust the value based on your design */
+}
+
+.frame .text-wrapper-3 {
+  color: #eaeaea;
+  font-family: "Open Sans-Bold", Helvetica;
+  font-size: 15px; /* Adjust the value based on your design */
+  font-weight: 700;
+  letter-spacing: -0.53px;
+  line-height: normal;
+  position: relative;
+  width: fit-content;
+}
+
+.frame .img-2 {
+  height: 25px; /* Adjust the value based on your design */
+  position: relative;
+  width: 25px; /* Adjust the value based on your design */
+}
+
+.frame .text-wrapper-4 {
+  color: #eaeaea;
+  font-family: "Open Sans-Bold", Helvetica;
+  font-size: 12px; /* Adjust the value based on your design */
+  font-weight: 700;
+  letter-spacing: -0.53px;
+  line-height: normal;
+  position: relative;
+  width: fit-content;
+}
+
+.frame .div-wrapper {
+  border: 1px solid #000000;
+  height: 500px; /* Adjust the value based on your design */
+  position: relative;
+  width: 300px; /* Adjust the value based on your design */
+}
+
+.frame .div-7 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 30px; /* Adjust the value based on your design */
+  justify-content: center;
+  left: 20px; /* Adjust the value based on your design */
+  position: relative;
+  top: 20px; /* Adjust the value based on your design */
+}
+
+.frame .overlap-wrapper {
+  height: 100px; /* Adjust the value based on your design */
+  position: relative;
+  width: 400px; /* Adjust the value based on your design */
+}
+
+.frame .overlap {
+  height: 100px; /* Adjust the value based on your design */
+  position: relative;
+  width: 400px; /* Adjust the value based on your design */
+}
+
+.frame .div-8 {
+  height: 80px; /* Adjust the value based on your design */
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 20px; /* Adjust the value based on your design */
+  width: 400px; /* Adjust the value based on your design */
+}
+
+.frame .rectangle-3 {
+  height: 80px; /* Adjust the value based on your design */
+  left: -40px; /* Adjust the value based on your design */
+  position: absolute;
+  top: -420px; /* Adjust the value based on your design */
+  width: 410px; /* Adjust the value based on your design */
+}
+
+.frame .overlap-group {
+  height: 60px; /* Adjust the value based on your design */
+  left: 0;
+  position: absolute;
+  top: 20px; /* Adjust the value based on your design */
+  width: 400px; /* Adjust the value based on your design */
+}
+
+.frame .p {
+  color: #686868;
+  font-family: "Open Sans-SemiBold", Helvetica;
+  font-size: 40px; /* Adjust the value based on your design */
+  font-weight: 600;
+  left: 0;
+  letter-spacing: -0.53px;
+  line-height: normal;
+  position: absolute;
+  top: 0;
+}
+
+.frame .line {
+  height: 1px; /* Adjust the value based on your design */
+  left: 1px; /* Adjust the value based on your design */
+  position: absolute;
+  top: 34px; /* Adjust the value based on your design */
+  width: 399px; /* Adjust the value based on your design */
+}
+
+.frame .div-9 {
+  align-items: center;
+  display: inline-flex;
+  left: 200px; /* Adjust the value based on your design */
+  position: absolute;
+  top: 0;
+}
+
+.frame .icon-refresh {
+  height: 8px; /* Adjust the value based on your design */
+  position: relative;
+  width: 8px; /* Adjust the value based on your design */
+}
+
+.frame .text-wrapper-5 {
+  color: #d9d9d9;
+  font-family: "Open Sans-SemiBold", Helvetica;
+  font-size: 10px; /* Adjust the value based on your design */
+  font-weight: 600;
+  letter-spacing: -0.53px;
+  line-height: normal;
+  margin-top: -1px; /* Adjust the value based on your design */
+  position: relative;
+  width: fit-content;
+}
+
+.frame .hello-world-this-is {
+  color: #979797;
+  font-family: "Open Sans-SemiBold", Helvetica;
+  font-size: 15px; /* Adjust the value based on your design */
+  font-weight: 600;
+  letter-spacing: -0.53px;
+  line-height: normal;
+  position: relative;
+  width: 400px; /* Adjust the value based on your design */
+}
+
+/*# sourceMappingURL=TestComponent.css.map */

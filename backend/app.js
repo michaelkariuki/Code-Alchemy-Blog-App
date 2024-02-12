@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+// const fileUpload = require('express-fileupload');
 var cookieParser = require('cookie-parser');
 const session = require('express-session');
 var logger = require('morgan');
@@ -17,6 +18,11 @@ var authenticationRouter = require('./routes/authRoute');
 
 
 var app = express();
+
+// CORS SETUP
+app.use(cors({
+  origin: ["http://localhost:3000"]
+}))
 
 // PRISMA/EXPRESS SESSION 
 const store = new PrismaSessionStore(
@@ -38,8 +44,14 @@ const sessionOptions = {
   store: store
 };
 
+
+
 //MIDDLEWARE ***************************************
-app.use(express.json());
+// app.use(fileUpload({
+//   createParentPath: true,
+//   debug: true
+// }))
+app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: false }));
 app.use(session(sessionOptions))
 app.use(cookieParser());

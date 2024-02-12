@@ -1,0 +1,54 @@
+@use "../main.scss" as main;
+@use "../variables.scss" as var;
+@use "../Mixins.scss" as mixins;
+
+
+.lgmi-container{
+    // @include mixins.test-border(red);
+
+    .lgmi-image-wrapper{
+        padding: 0;
+
+
+        @media screen and (max-width: 768px) {
+            margin-bottom: 2rem;
+          }
+        
+
+        // .card-img{
+        // position: relative;
+
+        // &::before {
+        //     content: "";
+        //     position: absolute;
+        //     top: 0;
+        //     right: 0;
+        //     bottom: 0;
+        //     left: 0;
+        //     background-color: map-get($map: var.$general, $key: deepPurple70);
+        //         }
+        //     }
+
+        .lgmi-overlay{
+            padding: 1.5rem;
+
+  
+            .content-text{
+                font-size: map-get($map: var.$font-sizes, $key: small-text);
+                // color: map-get($map: var.$text, $key: silver);
+                font-weight: 500;
+            }
+
+            .content-title{
+                font-size: map-get($map: var.$font-sizes, $key: base);
+                font-weight: 600;
+                margin-bottom: 1.4rem;
+            }
+        }
+
+    }
+
+    .lgmi-mini-cards-wrapper{
+        padding: 0;
+    }
+}
